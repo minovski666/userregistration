@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Tutorials</title>
+    <script src="jquery.js"></script>
+    <style>
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        #box {
+            background: grey;
+            text-align: center;
+            padding: 10px;
+            color: white;
+            width: 500px;
+            height: 250px;
+            margin: 0 auto;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+
+            $("#sub").click(function () {
+
+                var user_name = $("#name").val();
+                var user_pass = $("#pass").val();
+                var user_email = $("#email").val();
+
+                $.post("test.php", {name:user_name,pass:user_pass,email:user_email}, function (data) {
+
+                    $("#result").html(data);
+                });
+
+                /* $.ajax ({
+                    url: 'test.php',
+                    data: {name:user_name,pass:user_pass,email:user_email},
+                    type: 'POST',
+                    success: function (data) {
+                    $("#result").html(data);
+                }
+
+                });*/
+
+            });
+
+
+        });
+    </script>
+</head>
+<body>
+
+<div id="box">
+    <h2>New user register here</h2>
+    <input type="text" name="name" id="name" placeholder="enter your name" /><br/>
+    <input type="text" name="email" id="email" placeholder="enter your email" /><br/>
+    <input type="password" name="pass" id="pass" placeholder="enter your password" /><br/><br/>
+    <input type="submit" name="sub" value="Submit" id="sub">
+
+    <div id="result">
+
+    </div>
+
+</div>
+</body>
+</html>
